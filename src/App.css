@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
@@ -26,6 +30,11 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.todo__wrapper {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 @keyframes App-logo-spin {
