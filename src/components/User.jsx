@@ -1,3 +1,5 @@
+import "./User.css"
+
 function User({ id, name, email, username }) {
   return (
     <div style={{ border: `3px solid black` }}>
