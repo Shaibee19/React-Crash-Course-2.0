@@ -18,12 +18,6 @@ function Home() {
     console.log(data);
   }
 
-  useEffect(() => {
-    setTimeout(() => {
-      fetchUsers();
-    }, 1000);
-  }, []);
-
   const [showModal, setShowModal] = useState(false);
 
   function onToDoDelete() {
@@ -36,24 +30,36 @@ function Home() {
     console.log("clicked");
   }
 
+  function renderUsers() {
+    return users.map((user) => (
+      <Link to={`/users/${user.id}`} key={user.id}>
+        <User
+          id={user.id}
+          name={user.name}
+          email={user.email}
+          username={user.username}
+        />
+      </Link>
+    ));
+  }
+
+  function renderSkeleton() {
+    return <h1>Loading...</h1>;
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      fetchUsers();
+    }, 1000);
+  }, []);
+
   useEffect(() => {
     console.log("ONLY on mount");
   }, []);
 
-  //   const pixels = "3px";
-
   return (
     <div>
-      {users.map((user) => (
-        <Link to={`/users/${user.id}`} key={user.id}>
-          <User
-            id={user.id}
-            name={user.name}
-            email={user.email}
-            username={user.username}
-          />
-        </Link>
-      ))}
+      {users.length ? renderUsers() : renderSkeleton()}
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
